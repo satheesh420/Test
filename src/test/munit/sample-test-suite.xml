@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="sample-test-suite.xml" />
+	<munit:test name="sample-test-suite-SuccessResponse" doc:id="06bb2182-29c7-4624-b980-6241775d92ab" description="Test">
+        <munit:execution >
+            <flow-ref doc:name="Flow-ref to sampleFlow" doc:id="11480e1c-8e4c-4109-a114-568e7900c0b7" name="sampleFlow"/>
+        </munit:execution>
+        <munit:validation>
+            <munit-tools:assert-that doc:name="Assert that" doc:id="79876460-c86d-4d82-bec6-c4c32bc481ab" is="#[MunitTools::withMediaType('application/json')]" expression="#[payload]" message="Payload is not json"/>
+       
+</munit:validation>
+   
+</munit:test>
+<munit:test name="sample-test-suite-NotNullResponse" doc:id="0c7708df-4e4f-4800-9637-a98473598181" description="Test">
+        <munit:execution >
+            <flow-ref doc:name="Flow-ref to sampleFlow" doc:id="ff6ec085-daa0-475e-8126-e471b623e0f7" name="sampleFlow"/>
+        </munit:execution>
+        <munit:validation>
+            <munit-tools:assert-that doc:name="Assert that" doc:id="e960d472-ea90-4367-ba0e-b7165fe1ce78" is="#[MunitTools::notNullValue()]" expression="#[payload]" message="Payload is not null"/>
+       
+</munit:validation>
+   
+</munit:test>
+</mule>
