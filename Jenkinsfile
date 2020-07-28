@@ -11,7 +11,12 @@ pipeline {
                 bat 'mvn clean package'
             }
         }
-       
+        // Munit testing
+        stage('MUnit Testing') {
+            steps {
+                bat 'mvn test'
+            }
+        }
 	}
   
 	
